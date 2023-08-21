@@ -29,7 +29,7 @@ def load_emotion_model():
     BS=32
     INIT_LR = 1e-4
     EPOCHS = 10
-    model = tf.keras.models.load_model('../Downloads/model-5.h5', compile=False)
+    model = tf.keras.models.load_model('../model-5.h5', compile=False)
     # Define the optimizer
     optimizer = tf.keras.optimizers.Nadam(learning_rate=0.001)
     opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
