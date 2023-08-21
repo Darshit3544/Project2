@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #upload-form {
+            margin: 20px;
+            text-align: center;
+        }
+        #output {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Emotion Detection App</h1>
+    <div id="upload-form">
+        <input type="file" id="imageInput">
+        <button id="processButton">Detect Emotion</button>
+    </div>
+    <div id="output">
+        <h2>Emotion Result</h2>
+        <p id="outputText"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
