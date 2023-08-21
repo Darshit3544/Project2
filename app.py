@@ -10,7 +10,9 @@ def detect_emotion(image):
     emotion_label = "happiness"
     emotion_probability = 0.85
     return emotion_label, emotion_probability
-
+@app.route('/')
+def index():
+    return render_template('index.html')
 @app.route('/process_emotion', methods=['POST'])
 def process_emotion():
     try:
