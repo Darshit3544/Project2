@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const formData = new FormData();
                 formData.append("image", file);
 
-                const apiUrl = "/process_emotion";  // Assuming the server runs on the same domain
+                const apiUrl = "http://127.0.0.1:5000/process_emotion"; 
 
                 try {
                     const response = await fetch(apiUrl, {
