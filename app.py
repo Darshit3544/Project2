@@ -1,18 +1,44 @@
 from flask import Flask, request, jsonify
 import cv2
 import numpy as np
+import tensorflow as tf
 
 app = Flask(__name__)
 
 # For the purpose of this example, we'll simulate emotion detection
 def detect_emotion(image):
+    emotion_labels = ['happiness',  'sadness', 'neutral']
+    threshold = 0.5
     # Simulate emotion detection by returning a static result
-    emotion_label = "happiness"
-    emotion_probability = 0.85
-    return emotion_label, emotion_probability
-@app.route('/')
-def index():
-    return render_template('index.html')
+    pred = model.predict(image)
+
+    label_prob = np.max(pred)
+    if label_prob < threshold:
+        label = 2  # set the label to 'neutral'
+    else:
+        label = np.argmax(pred)
+    text = emotion_labels[label]
+    return text, threshold
+
+# Load your emotion detection model
+def load_emotion_model():
+    BS=32
+    INIT_LR = 1e-4
+    EPOCHS = 10
+    # model = tf.keras.models.load_model('../Downloads/CloseOrOpenEye-2.model', compile=False)
+    model = tf.keras.models.load_model('../Downloads/model-5.h5', compile=False)
+    # imagemodel = tf.keras.models.load_model('../Downloads/CloseOrOpenEye-2.model', compile=False)
+
+    # Define the optimizer
+    optimizer = tf.keras.optimizers.Nadam(learning_rate=0.001)
+    opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
+
+    # Compile the model with the specified optimizer
+    model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
+    return None
+
+emotion_model = load_emotion_model()
+
 @app.route('/process_emotion', methods=['POST'])
 def process_emotion():
     try:
